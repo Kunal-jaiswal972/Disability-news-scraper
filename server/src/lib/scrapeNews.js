@@ -13,7 +13,7 @@ dotenv.config();
 
 export async function scrapeNews(url) {
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: "new",
     defaultViewport: null,
     args: [
       "--disable-setuid-sandbox",
