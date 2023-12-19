@@ -2,17 +2,18 @@ import puppeteer from "puppeteer";
 import { scrollPageToBottom } from "puppeteer-autoscroll-down";
 import * as cheerio from "cheerio";
 import { delay } from "./delay.js";
-import {
-  writeFileOnServer,
-  writeFileOnBackupFolder,
-} from "./writeFileInSystem.js";
+import { getRandomDelay } from "./random.js";
+// import {
+//   writeFileOnServer,
+//   writeFileOnBackupFolder,
+// } from "./writeFileInSystem.js";
 
 import dotenv from "dotenv";
 dotenv.config();
 
 export async function scrapeNews(url) {
   const browser = await puppeteer.launch({
-    headless: "new",
+    headless: true,
     defaultViewport: null,
     args: [
       "--disable-setuid-sandbox",
@@ -34,7 +35,7 @@ export async function scrapeNews(url) {
 
     await scrollPageToBottom(page, {
       size: 500,
-      delay: 250,
+      delay: getRandomDelay(200, 300),
     });
 
     // await page.waitForFunction(() => {
@@ -61,10 +62,10 @@ export async function scrapeNews(url) {
       news.push({ link, img, title, time, article });
     });
 
-    if (!process.env.NODE_ENV || process.env.NODE_ENV !== "production") {
-      writeFileOnBackupFolder(news);
-      writeFileOnServer(news);
-    }
+    // if (!process.env.NODE_ENV || process.env.NODE_ENV !== "production") {
+    //   writeFileOnBackupFolder(news);
+    //   writeFileOnServer(news);
+    // }
 
     return news;
   } catch (error) {
