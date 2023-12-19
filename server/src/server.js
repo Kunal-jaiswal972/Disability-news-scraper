@@ -6,10 +6,8 @@ const PORT = process.env.PORT || 5000;
 app.get("/", (req, res) => {
   res.status(201).json({
     "/api/v1/test": "to check if endpoint is running",
-    "/api/v1/news/general": "for general news",
-    "/api/v1/news/education": "for educational news",
-    "/api/v1/news/benefits": "for benfits of disabled news",
-    imp: "to check news and use ?page=NUMBER to access differnt pages",
+    "/api/v1/news/getNews":
+      "to check news and use ?page=NUMBER to access differnt pages",
   });
 });
 

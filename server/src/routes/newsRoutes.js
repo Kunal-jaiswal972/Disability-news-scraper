@@ -1,14 +1,8 @@
 import { Router } from "express";
-import {
-  getBenefitsNews,
-  getEducationNews,
-  getGeneralNews,
-} from "../controllers/newsController.js";
+import { getNews } from "../controllers/newsController.js";
 
 const NewsRoutes = Router();
 
-NewsRoutes.get("/general", getGeneralNews);
-NewsRoutes.get("/education", getEducationNews);
-NewsRoutes.get("/benefits", getBenefitsNews);
+NewsRoutes.get("/getNews", getNews);
 
 export default NewsRoutes;
