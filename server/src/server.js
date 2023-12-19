@@ -5,7 +5,11 @@ import app from "./app.js";
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
-  res.status(201).json("hi from server");
+  res.status(201).json({
+    "/api/v1/test": "to check if endpoint is running",
+    "/api/v1/news/getNews":
+      "to check news and use ?page=NUMBER to access differnt pages",
+  });
 });
 
 // connectToDatabase()
