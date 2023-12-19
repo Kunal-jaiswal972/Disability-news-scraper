@@ -61,8 +61,10 @@ export async function scrapeNews(url) {
       news.push({ link, img, title, time, article });
     });
 
-    writeFileOnServer(news);
-    writeFileOnBackupFolder(news);
+    if (!process.env.NODE_ENV || process.env.NODE_ENV !== "production") {
+      writeFileOnBackupFolder(news);
+      writeFileOnServer(news);
+    }
 
     return news;
   } catch (error) {
