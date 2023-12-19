@@ -46,7 +46,7 @@ export const getEducationNews = async (req, res) => {
 export const getBenefitsNews = async (req, res) => {
   const { page = 1, newsPerPage = 10 } = req.query;
   const url =
-    "https://timesofindia.indiatimes.com/topic/scholarship-for-disabled-students";
+    "https://timesofindia.indiatimes.com/topic/schemes-for-disabled-in-india";
 
   const benefitNews = await getNews(url, page);
 
