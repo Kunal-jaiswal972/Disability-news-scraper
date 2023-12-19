@@ -2,11 +2,14 @@ import puppeteer from "puppeteer";
 import { scrollPageToBottom } from "puppeteer-autoscroll-down";
 import * as cheerio from "cheerio";
 import { delay } from "./delay.js";
-import { writeFileOnServer } from "./writeFileInSystem.js";
+import {
+  writeFileOnServer,
+  writeFileOnBackupFolder,
+} from "./writeFileInSystem.js";
 
 export async function scrapeNews(url) {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: "new",
     defaultViewport: null,
   });
 
@@ -45,13 +48,8 @@ export async function scrapeNews(url) {
       news.push({ link, img, title, time, article });
     });
 
-    const currentTime = new Date().toLocaleString("en-US", {
-      hour12: true,
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-    const filePath = `./src/config/${currentTime}.json`;
-    writeFileOnServer(filePath, news);
+    writeFileOnServer(news);
+    writeFileOnBackupFolder(news);
 
     return news;
   } catch (error) {
