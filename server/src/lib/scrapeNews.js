@@ -7,10 +7,23 @@ import {
   writeFileOnBackupFolder,
 } from "./writeFileInSystem.js";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 export async function scrapeNews(url) {
   const browser = await puppeteer.launch({
     headless: "new",
     defaultViewport: null,
+    args: [
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+      "--single-process",
+      "--no-zygote",
+    ],
+    executablePath:
+      process.env.NODE_ENV === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
   });
 
   try {
