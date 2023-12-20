@@ -9,7 +9,7 @@ export default urlsToScrape;
 
 export const perkin = [
   {
-    img: "https://www.perkins.org/wp-content/uploads/2023/07/Blog-story-Marie-QA-1200-628-px-1024x536.png",
+    img: "https://www.perkins.org/wp-content/uploads/2022/08/EarlyCC_logo_video_card-1024x576.png",
     title:
       "The Impact of Vision Loss in Development and the Importance of Collaboration to Support the Child",
     link: "https://www.perkins.org/perkins-alumna-marie-hennessy-is-determined-to-give-back-to-her-community/",
